@@ -1,1 +1,9 @@
 <h1>Tasks</h1>
+
+<ul id="tasks">
+  <% @tasks.each do |task| %>
+    <%= content_tag "li" do %>
+      <%= task.title %> (<%= task.estimated_length %>)
+    <% end %>
+  <% end %>
+</ul>
