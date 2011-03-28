@@ -15,4 +15,28 @@ class TasksControllerTest < ActionController::TestCase
 
     assert_select "ul#tasks li", 2
   end
+
+  context "new" do
+    setup do
+      get :new
+    end
+
+    should respond_with(:success)
+  end
+
+  context "create" do
+    setup do
+      # plan ist eine Machinist-Methode, die die notwendigen Parameter für das
+      # Anlegen eines Objektes zurückgibt, das Objekt aber nicht in der Datenbank anlegt
+      post :create, :task => Task.plan
+    end
+
+    # respond_with ist einer der vielen Shoulda-Matcher
+    # dabei wird ein Status überprüft, der durch das setup gesetzt wurde!
+    should respond_with(:redirect)
+
+    should "create a task" do
+      assert_equal 1, Task.count
+    end
+  end
 end
