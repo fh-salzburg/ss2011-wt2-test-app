@@ -4,18 +4,25 @@ class TasksIntegrationTest < ActionDispatch::IntegrationTest
   should "show tasks" do
     Task.make(:title => "first task")
     Task.make(:title => "second task")
-    get '/tasks'
-    assert_response :success
+    visit '/tasks'
     # checking the html structure
-    assert_select 'ul#tasks li', 2
+    assert page.has_css?('ul#tasks li', :count => 2)
     # or just checking the content
-    assert_match "first task", response.body
-    assert_match "second task", response.body
+    assert page.has_content?("first task")
+    assert page.has_content?("second task")
   end
 
-  test "create tasks" do
+  should "create task" do
+    visit tasks_path
+    click_link "Neuer Task"
+    fill_in "Titel", :with => "My Task"
+    select "2", :from => "Geschätzte Dauer"
+
     assert_difference("Task.count") do
-     post tasks_path, :task => { :title => "My Task", :estimated_length => "2" }
+      click_button "Abschicken"
     end
+
+    assert page.has_css?('ul#tasks li', :count => 1)
+    assert page.has_content?('My Task')
   end
 end
