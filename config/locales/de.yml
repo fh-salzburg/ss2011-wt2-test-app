@@ -177,6 +177,10 @@ de:
       not_an_integer: "muss ganzzahlig sein"
       
   activerecord:
+    attributes:
+      task:
+        title: "Titel"
+        estimated_length: "Geschätzte Dauer"
     errors:
       template:
         header:

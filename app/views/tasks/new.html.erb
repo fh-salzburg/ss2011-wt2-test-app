@@ -1,10 +1,10 @@
 <h1>Neuer Task</h1>
 
 <%= form_for @task do |f| %>
-  <%= f.label :title, "Titel" %><br />
+  <%= f.label :title %><br />
   <%= f.text_field :title %><br />
   <br />
-  <%= f.label :estimated_length, "Geschätzte Dauer" %><br />
+  <%= f.label :estimated_length %><br />
   <%= f.select :estimated_length, 1..6, :include_blank => true %>
   <br />
   <%= f.submit "Abschicken" %>
