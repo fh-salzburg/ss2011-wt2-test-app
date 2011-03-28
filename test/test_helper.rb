@@ -9,4 +9,8 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
 
   # Add more helper methods to be used by all tests here...
+
+  setup { Sham.reset }
 end
+
+require File.expand_path(File.dirname(__FILE__) + "/blueprints")
