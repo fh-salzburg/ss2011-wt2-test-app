@@ -8,4 +8,5 @@ group :test do
   gem 'machinist'
   gem 'faker', '0.3.1'
   gem 'shoulda'
+  gem 'capybara'
 end

@@ -12,4 +12,10 @@ class TasksIntegrationTest < ActionDispatch::IntegrationTest
     assert_match "first task", response.body
     assert_match "second task", response.body
   end
+
+  test "create tasks" do
+    assert_difference("Task.count") do
+     post tasks_path, :task => { :title => "My Task", :estimated_length => "2" }
+    end
+  end
 end
