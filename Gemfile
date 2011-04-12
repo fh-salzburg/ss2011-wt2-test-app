@@ -9,4 +9,5 @@ group :test do
   gem 'faker', '0.3.1'
   gem 'shoulda'
   gem 'capybara'
+  gem 'mocha', :require => false
 end

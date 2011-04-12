@@ -24,6 +24,15 @@ class TasksControllerTest < ActionController::TestCase
     should respond_with(:success)
   end
 
+  context "create with non-valid task" do
+    setup do
+      Task.any_instance.stubs(:valid?).returns(false)
+      post :create, :task => Task.plan
+    end
+
+    should respond_with(:success)
+  end
+
   context "create" do
     setup do
       # plan ist eine Machinist-Methode, die die notwendigen Parameter für das
